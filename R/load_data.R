@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' load_data("snitz_2013/behavior.csv")
+#' db <- load_data("snitz_2013/behavior.csv")
 #'
   load_data <- function(rel_path, remote=FALSE){
 

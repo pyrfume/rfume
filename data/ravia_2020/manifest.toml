@@ -10,7 +10,7 @@ tableS2.csv = "Supplementary Table 2"
 tableS3.csv = "Supplementary Table 2"
 
 [processed]
-main.rmd = "Processing workflow"
+https://github.com/KingFunk/pyrfume-data/blob/master/ravia_2020/main.rmd = "Processing workflow"
 mixtures.csv = "Mixtures used"
 intensity.csv = "Intensity of mixtures used"
 behavior1.csv = "Similarity rating test results"
