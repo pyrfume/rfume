@@ -1,0 +1,16 @@
+Package: pyrfume
+Title: A R library for olfactory psychophysics
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Robert",
+           family = "Pellegrino",
+           email = "rpellegrino@monell.org",
+           role = c("aut", "cre"))
+Description: To make olfactory psychophysics data more available, more usable, and more visible to researchers in the experimental and theoretical olfaction research community.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    utils

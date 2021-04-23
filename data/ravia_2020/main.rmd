@@ -1,0 +1,85 @@
+---
+title: "Ravia Datasets"
+author: "Robert Pellegrino"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  word_document: default
+  html_document: default
+note: 1st exploratory analysis
+---
+
+## Loadoad Packages
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message = FALSE,warning = FALSE)
+
+R.Version()$version.string #code ran on R version 4.0.3 (2020-10-10)
+
+# Load packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse)
+               
+```
+
+# Data Processing
+## Process Datasets
+Ravia et al. 2021 experiments are broken into four components:
+* Similarity Ratings
+** Includes the mixture number that are being compared as well as their similarity rating
+* Mixtures
+** List the mixtures (lookup number) and their respective component odorants
+* Intensity
+** List individual odorants and their intensity
+* Discrimination
+** List discrimination ability between two mixtures
+
+Experiment breakdown:
+* Experiment 1
+** Similarity rating between several mixtures varying in intensity
+* Experiment 2
+** Similarity rating between several mixtures varying in intensity
+* Experiment 3 - Similarity ratings not included in Supplementary
+** Bell challenge: similarity rating between three mixtures by perfumer
+* Experiment 4  
+** 50 pairs of mixture discriminated with triangle test by 27 subjects in replicate. 100 trials/subject
+* Experiment 5  
+** 50 pairs of mixtures discriminated with two-alternative same–different task by 30 subjects in replicate. Each odorant was used at two different concentration. 400 trials/subject
+* Experiment 6  
+** 40 pairs of mixtures discriminated with two-alternative same–different task by 25 subjects in replicate. Each odorant was used at two different concentration. 320 trials/subject
+* Experiment 7 - Excluded from this analysis
+** Metemors discrimination on individual level
+
+```{r}
+# Read in Ravia Experiments and manipulate for combining
+  ## Odorants     
+     db.ravia.lookup <- read.csv("tableS1.csv") %>%
+       filter(Type != "mono-molecule", Experiment != "Exp7") %>%
+       na_if(0) %>%
+       unite("Mixture.Cids", starts_with("Mix.Component"), na.rm = TRUE, remove = FALSE, sep = " ") %>%
+       select(ID.In.Exp.1, Mixture.Cids, Experiment) %>%
+       rename(Mixture.Number = ID.In.Exp.1)
+     
+  ## Intensity
+     db.ravia.intensity <- read.csv("tableS1.csv") %>%
+       filter(Type == "mono-molecule", Experiment != "Exp7") %>%
+       select(CID, Dilution1, Intensity1, Dilution2, Intensity2, Dilution3, Intensity3, Experiment) %>%
+       na_if("Blank")
+     
+  ## Similarity
+     db.ravia.similar <- read.csv("tableS2.csv") %>%
+       rename(Mixture.1 = Mixture1Id,  Mixture.2 = Mixture2Id, Average.rated.similarity = RatedSimilarity) %>%
+       select(Mixture.1, Mixture.2, Average.rated.similarity, Experiment)
+       
+  ## Discrimination   
+     db.ravia.discrim <- read.csv("tableS3.csv") %>%
+       filter(Experiment != "Exp7") %>%
+       select(-c(Mixture3, Mixture4, CompareIndex)) %>%
+       rename(Mixture.1 = Mixture1,  Mixture.2 = Mixture2)
+    
+# Save processed data to csv
+  write.csv(db.ravia.similar, file = "behavior1.csv", row.names = FALSE)
+  write.csv(db.ravia.lookup, file = "mixtures.csv", row.names = FALSE)
+  write.csv(db.ravia.intensity, file = "intensity.csv", row.names = FALSE)
+  write.csv(db.ravia.discrim, file = "behavior2.csv", row.names = FALSE)
+    
+```
+
