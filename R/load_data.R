@@ -10,6 +10,7 @@
 #'
 #' @examples
 #' load_data("snitz_2013/behavior.csv")
+#'
   load_data <- function(rel_path, remote=FALSE){
 
     if(remote == TRUE){
