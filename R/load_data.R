@@ -14,7 +14,7 @@
   load_data <- function(rel_path, remote=FALSE){
 
     if(remote == TRUE){
-      full_path <- url(paste("https://raw.githubusercontent.com/pyrfume/pyrfume-data/master", rel_path, sep = "/"))
+      full_path <- url(paste("https://raw.githubusercontent.com/pyrfume/pyrfume-data/main", rel_path, sep = "/"))
       tryCatch(utils::read.csv(full_path),
                warning = function(w){message("No remote file: Check data name")},
                error = function(e){message(e)})
