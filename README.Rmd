@@ -13,35 +13,34 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # pyrfume
 
 <!-- badges: start -->
 <!-- badges: end -->
-
-Pyrfume is an effort to extensively curate data related to olfactory psychophysics, to transparently and automatically determine how well models make sense of this data, and to inform experimental design for olfactory research at large.
+ 
+[Pyrfume](https://pyrfume.org/) is an effort to extensively curate data related to olfactory psychophysics, to transparently and automatically determine how well models make sense of this data, and to inform experimental design for olfactory research at large.
 
 ## Installation
-
 You can install the released version of pyrfume from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```{r}
 install.packages("pyrfume")
 ```
 
-You can install the development version of pyrfume using:
+You can install the development version of pyrfume from [GitHub](https://github.com/pyrfume/rfume):
 
-```r
+```{r}
 library(devtools)
-install_github("pyrfume/rfume")
-
+install_github("pyrfume/rfume", force = TRUE)
 ```
 
 ## Example
 
-This is a basic example:
+This is a basic example which shows you how retrieve a behavior dataset
 
 ```{r example}
-library(pyrfume)
+
 Snitz2013 <- pyrfume::load_data("snitz_2013/behavior.csv")
 hist(Snitz2013$Similarity)
 
