@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # pyrfume
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/pyrfume/rfume/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pyrfume/rfume/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
  
 [Pyrfume](https://pyrfume.org/) is an effort to extensively curate data related to olfactory psychophysics, to transparently and automatically determine how well models make sense of this data, and to inform experimental design for olfactory research at large.

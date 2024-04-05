@@ -5,9 +5,13 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/pyrfume/rfume/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pyrfume/rfume/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of pyrfume is to …
+[Pyrfume](https://pyrfume.org/) is an effort to extensively curate data
+related to olfactory psychophysics, to transparently and automatically
+determine how well models make sense of this data, and to inform
+experimental design for olfactory research at large.
 
 ## Installation
 
@@ -16,40 +20,44 @@ You can install the released version of pyrfume from
 
 ``` r
 install.packages("pyrfume")
+#> Installing package into 'C:/Users/rpellegrino/AppData/Local/Temp/Rtmp21DE4t/temp_libpath6f3076f77858'
+#> (as 'lib' is unspecified)
+#> Warning: package 'pyrfume' is not available for this version of R
+#> 
+#> A version of this package for your version of R might be available elsewhere,
+#> see the ideas at
+#> https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+You can install the development version of pyrfume from
+[GitHub](https://github.com/pyrfume/rfume):
+
+``` r
+library(devtools)
+#> Loading required package: usethis
+install_github("pyrfume/rfume", force = TRUE)
+#> Downloading GitHub repo pyrfume/rfume@HEAD
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>       ✔  checking for file 'C:\Users\rpellegrino\AppData\Local\Temp\Rtmpgxpnc3\remotes142c58a47329\pyrfume-rfume-23959e3/DESCRIPTION' (367ms)
+#>       ─  preparing 'pyrfume':
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#>       ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>   ─  building 'pyrfume_0.0.0.9000.tar.gz'
+#>      
+#> 
+#> Installing package into 'C:/Users/rpellegrino/AppData/Local/Temp/Rtmp21DE4t/temp_libpath6f3076f77858'
+#> (as 'lib' is unspecified)
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how retrieve a behavior dataset
 
 ``` r
-library(pyrfume)
-## basic example code
+
+Snitz2013 <- pyrfume::load_data("snitz_2013/behavior.csv")
+hist(Snitz2013$Similarity)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-example-1.png" width="100%" />
